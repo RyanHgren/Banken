@@ -1,15 +1,58 @@
 import java.util.Scanner;
 
 public class banken {
-    static void meny (){
 
+    static void saldo(){
+        
     }
 
-    static void pengar (){
+    static void deposit(){
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.println("Välj hur mycket du vill sätta in (1-4) / 0 exit");
+            System.out.println("1. 100");
+            System.out.println("2. 500");
+            System.out.println("3. 1000");
+            System.out.println("4. Skriv antal själv");
 
+            int choice = scan.nextInt();
+            if (choice == 0){
+                return;
+            }
+            double result = 0.0;
+            boolean validChoice = true;
+            switch (choice) {
+                case 1:
+                    result = saldo + 100;
+                    break;
+                case 2:
+                    result = saldo + 500;
+                    break;
+                case 3:
+                    result = saldo + 1000;
+                case 4:
+                    System.out.println("Skriv in antal");
+                    double antal = scan.nextDouble();
+                    result = saldo + antal;
+                default:
+                    validChoice = false;
+                    System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
+                    break;
+            }
+
+        }
     }
 
-    static void user (){
+    static void withdraw(){
+
+    }
+    static void transaktion(){
+
+    }
+    static void pin(){
+
+    }
+    static void admin(){
 
     }
     
@@ -18,18 +61,45 @@ public class banken {
         Scanner scan = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Menu");
+
+            System.out.println("Välkomna till Banken, välj ett alternative (1-7)");
+            System.out.println("1. Se saldo");
+            System.out.println("2. Sätt in pengar");
+            System.out.println("3. Ta ut pengar");
+            System.out.println("4. Visa transaktionshistorik");
+            System.out.println("5. Byt PIN");
+            System.out.println("6. Admin");
+            System.out.println("7. Avsluta programmet");
             int choice = scan.nextInt();
 
             switch (choice) {
                 case 1:
-                    
+                    saldo();
                     break;
+                case 2:
+                    deposit();
+                    break;
+                case 3:
+                    withdraw();
+                    break;
+                case 4:
+                    transaktion();
+                    break;
+                case 5:
+                    pin();
+                    break;
+                case 6:
+                    admin();
+                    break;
+                case 7:
+                    System.out.println("Tack för att du avände banken");
+                    scan.close();
+                    return;
                 default:
-                    
-                break;
+                    System.out.println("Ogiltigt val, ange nummer mellan (1-7)");
+                    break;
             }
-            scan.close();
+
         }
     }
-}
+} 
