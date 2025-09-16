@@ -122,9 +122,7 @@ public class banken {
     static void admin(){
 
     }
-    
-    public static void main(String[] args) {
-        
+    static void meny(){
         Scanner scan = new Scanner(System.in);
 
         while (true) {
@@ -168,5 +166,10 @@ public class banken {
             }
 
         }
+    }
+    
+    public static void main(String[] args) {
+        
+    
     }
 } 
