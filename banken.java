@@ -2,8 +2,24 @@ import java.util.Scanner;
 
 public class banken {
 
-    static void saldo(){
-        
+    static double saldo = 0.0;
+
+    static void saldoKonto(){
+        System.out.println("Tryck 1 för att se saldo/ Tryck 2 för att gå tillbaka");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        if ( choice == 1){
+            System.out.println("Ditt saldo är: " + saldo);
+            return;
+        } else if 
+            (choice == 2){
+                return;
+            }
+         else {
+            System.out.println("Ogiltigt val, ange nummer mellan (1-2");
+            return;
+        }
+
     }
 
     static void deposit(){
@@ -23,24 +39,30 @@ public class banken {
             boolean validChoice = true;
             switch (choice) {
                 case 1:
-                    result = saldo + 100;
+                    result += 100;
                     break;
                 case 2:
-                    result = saldo + 500;
+                    result += 500;
                     break;
                 case 3:
-                    result = saldo + 1000;
+                    result += 1000;
+                    break;
                 case 4:
                     System.out.println("Skriv in antal");
                     double antal = scan.nextDouble();
-                    result = saldo + antal;
+                    result += antal;
                 default:
                     validChoice = false;
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
                     break;
             }
-
+            if (validChoice) {
+                saldo += result;
+                System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
+                return;
+            }
         }
+        scan.close();
     }
 
     static void withdraw(){
@@ -74,7 +96,7 @@ public class banken {
 
             switch (choice) {
                 case 1:
-                    saldo();
+                    saldoKonto();
                     break;
                 case 2:
                     deposit();
