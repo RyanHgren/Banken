@@ -18,8 +18,9 @@ public class banken {
          else {
             System.out.println("Ogiltigt val, ange nummer mellan (1-2");
             return;
-        }
 
+        }
+        scan.close();
     }
 
     static void deposit(){
@@ -39,18 +40,18 @@ public class banken {
             boolean validChoice = true;
             switch (choice) {
                 case 1:
-                    result += 100;
+                    result = 100;
                     break;
                 case 2:
-                    result += 500;
+                    result = 500;
                     break;
                 case 3:
-                    result += 1000;
+                    result = 1000;
                     break;
                 case 4:
                     System.out.println("Skriv in antal");
                     double antal = scan.nextDouble();
-                    result += antal;
+                    result = antal;
                 default:
                     validChoice = false;
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
@@ -61,12 +62,56 @@ public class banken {
                 System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
                 return;
             }
+            scan.close();
         }
-        scan.close();
     }
 
     static void withdraw(){
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            System.out.println("Välj hur mycket du vill ta ut (1-4) / 0 exit");
+            System.out.println("1. 100");
+            System.out.println("2. 500");
+            System.out.println("3. 1000");
+            System.out.println("4. Skriv antal själv");
 
+            int choice = scan.nextInt();
+            if (choice == 0){
+                return;
+            }
+            double result = 0.0;
+            boolean validChoice = true;
+            switch (choice) {
+                case 1:
+                    result = 100;
+                    break;
+                case 2:
+                    result = 500;
+                    break;
+                case 3:
+                    result = 1000;
+                    break;
+                case 4:
+                    System.out.println("Skriv in antal");
+                    double antal = scan.nextDouble();
+                    result = antal;
+                default:
+                    validChoice = false;
+                    System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
+                    break;
+            }
+            if (validChoice) { 
+                if (saldo >= result){
+                    saldo -= result;
+                    System.out.println("Du har tagit ut: " + result + "Nu har du: " + saldo + " på ditt konto");
+
+                } else {
+                    System.out.println("Inte tillräckligt med pengar! Du har: " + saldo + " på ditt konto");
+                }
+                return;
+            }
+            scan.close();
+        }
     }
     static void transaktion(){
 
