@@ -2,22 +2,27 @@ import java.util.Scanner;
 
 public class banken {
 
-    static double saldo = 0.0;
+    //Global vairabler för saldo, pin och username
+    static double saldo = 0.0; 
     static String pin;
     static String username;
 
+    //Metod för att visa saldot
     static void saldoKonto(){
         System.out.println("Tryck 1 för att se saldo/ Tryck 2 för att gå tillbaka");
         Scanner scan = new Scanner(System.in);
         int choice = scan.nextInt();
         if ( choice == 1){
+            // Visa saldo
             System.out.println("Ditt saldo är: " + saldo);
             return;
         } else if 
+        // Återgå till menyn
             (choice == 2){
                 return;
             }
          else {
+            // Ogiltigt val hantering
             System.out.println("Ogiltigt val, ange nummer mellan (1-2");
             scan.close();
             return;
@@ -25,9 +30,11 @@ public class banken {
         }
     }
 
+    // Metod för att sätta in pengar
     static void deposit(){
         Scanner scan = new Scanner(System.in);
         while (true) {
+            // Meny för insättning
             System.out.println("Välj hur mycket du vill sätta in (1-4) / 0 exit");
             System.out.println("1. 100");
             System.out.println("2. 500");
@@ -35,11 +42,14 @@ public class banken {
             System.out.println("4. Skriv antal själv");
 
             int choice = scan.nextInt();
+            //0 för att avsluta
             if (choice == 0){
                 return;
             }
             double result = 0.0;
             boolean validChoice = true;
+
+            //Beslut för val, (summan att sätta in)
             switch (choice) {
                 case 1:
                     result = 100;
@@ -59,18 +69,20 @@ public class banken {
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
                     break;
             }
+            // Om valet är giltigt så uppdateras saldot
             if (validChoice) {
                 saldo += result;
                 System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
-                return;
+                return; // Återgå till menyn
             }
             scan.close();
         }
     }
-
+    // Metod för att ta ut pengar, liknande som deposit
     static void withdraw(){
         Scanner scan = new Scanner(System.in);
         while (true) {
+            // Meny för uttag
             System.out.println("Välj hur mycket du vill ta ut (1-4) / 0 exit");
             System.out.println("1. 100");
             System.out.println("2. 500");
@@ -78,11 +90,14 @@ public class banken {
             System.out.println("4. Skriv antal själv");
 
             int choice = scan.nextInt();
+            // 0 för att avsluta
             if (choice == 0){
                 return;
             }
             double result = 0.0;
             boolean validChoice = true;
+
+            // Beslut för val, (summan att ta ut)
             switch (choice) {
                 case 1:
                     result = 100;
@@ -103,11 +118,13 @@ public class banken {
                     break;
             }
             if (validChoice) { 
+                // Kontrollera om det finns tillräckligt pengar på kontot
                 if (saldo >= result){
                     saldo -= result;
                     System.out.println("Du har tagit ut: " + result + "Nu har du: " + saldo + " på ditt konto");
 
                 } else {
+                    // Om inte tillräckligt med pengar
                     System.out.println("Inte tillräckligt med pengar! Du har: " + saldo + " på ditt konto");
                 }
                 return;
@@ -115,6 +132,7 @@ public class banken {
             scan.close();
         }
     }
+    // PLatsholder metoder som kanske implementeras senare
     static void transaktion(){
 
     }
@@ -124,11 +142,12 @@ public class banken {
     static void admin(){
 
     }
+    // Huvudmeny metod
     static void meny(){
         Scanner scan = new Scanner(System.in);
 
         while (true) {
-
+            // Meny
             System.out.println("Välkomna till Banken, välj ett alternative (1-7)");
             System.out.println("1. Se saldo");
             System.out.println("2. Sätt in pengar");
@@ -139,6 +158,7 @@ public class banken {
             System.out.println("7. Avsluta programmet");
             int choice = scan.nextInt();
 
+            // Välj alternativ, baserat på användarens inmatning
             switch (choice) {
                 case 1:
                     saldoKonto();
@@ -169,22 +189,24 @@ public class banken {
 
         }
     }
-    
+    // Main metod när programmet startar
     public static void main(String[] args) {
         
         Scanner scan = new Scanner(System.in);
         
-        
+        // Fråga för att skapa username och pin
         System.out.println("Välkomna, gärna ange ditt username ");
         username = scan.next();
         System.out.println("Skapa eget pin code (4 syfror style)");
         String pin = scan.next();
         boolean pinValid = true;
 
+        // Kontrollera att pin är exakt 4 siffror
         if (pin.length() != 4) {
             pinValid = false;
             System.out.println("PIN måste vara 4 siffor");
         }
+        // Kontrollera att pin bara innehåller siffror
         for (int i = 0; i < pin.length(); i++) {
             if (!Character.isDigit(pin.charAt(i))) {
                 pinValid = false;
@@ -192,9 +214,10 @@ public class banken {
                 break;
             }
         }
+        // OM pin är correct så gå till menyn
         if (pinValid) {
             System.out.println("Username : " + username + " PIN " + pin);
-            meny();
+            meny(); // huvudmeny
         }
         scan.close();
         }
