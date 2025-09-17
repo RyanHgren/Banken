@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class banken {
 
     static double saldo = 0.0;
+    static String pin;
+    static String username;
 
     static void saldoKonto(){
         System.out.println("Tryck 1 för att se saldo/ Tryck 2 för att gå tillbaka");
@@ -17,10 +19,10 @@ public class banken {
             }
          else {
             System.out.println("Ogiltigt val, ange nummer mellan (1-2");
+            scan.close();
             return;
 
         }
-        scan.close();
     }
 
     static void deposit(){
@@ -170,6 +172,33 @@ public class banken {
     
     public static void main(String[] args) {
         
-    
+        Scanner scan = new Scanner(System.in);
+        
+        
+        System.out.println("Välkomna, gärna ange ditt username ");
+        username = scan.next();
+        System.out.println("Skapa eget pin code (4 syfror style)");
+        String pin = scan.next();
+        boolean pinValid = true;
+
+        if (pin.length() != 4) {
+            pinValid = false;
+            System.out.println("PIN måste vara 4 siffor");
+        }
+        for (int i = 0; i < pin.length(); i++) {
+            if (!Character.isDigit(pin.charAt(i))) {
+                pinValid = false;
+                System.out.println("PIN måste inneholla siffor");
+                break;
+            }
+        }
+        if (pinValid) {
+            System.out.println("Username : " + username + " PIN " + pin);
+            meny();
+        }
+        scan.close();
+        }
+        
+        
     }
-} 
+
