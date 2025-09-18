@@ -1,5 +1,6 @@
 import java.util.Scanner;
-import java.util.ArrayList
+import java.util.ArrayList;
+import java.util.List;
 
 public class banken {
 
@@ -136,8 +137,7 @@ public class banken {
             
         }
     }
-    // PLatsholder metoder som kanske implementeras senare
-    static void transaktion(Scanner scan){
+    /*static void transaktion(Scanner scan){
         // Metod för att visa transaktionshistorik
         System.out.println("Transaktionshistorik:");
         String cPin = scan.next(); //cPin = nuvarande pin
@@ -153,8 +153,24 @@ public class banken {
                 }
                 }
             }
-
+            }*/
+         static void transaktion(Scanner scan){
+        // Metod för att visa transaktionshistorik
+        System.out.println("Transaktionshistorik:");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (cPin.equals(pin)) {
+            if (transaktionshistorik.isEmpty()){
+                System.out.println("Du har inga transaktioner än");
+            } else {
+                for (String printTransaktion: transaktionshistorik) { // enhanced for loop för att gå igenom listan
+                System.out.println(printTransaktion);
+                }
             }
+        } else {
+            System.out.println("fel pin");
+            return;
+            }
+        }
     }
     static void pin(Scanner scan){
         // Metod för att byta pin
@@ -219,7 +235,7 @@ public class banken {
                     withdraw(scan);
                     break;
                 case 4:
-                    transaktion();
+                    transaktion(scan);
                     break;
                 case 5:
                     pin(scan);
