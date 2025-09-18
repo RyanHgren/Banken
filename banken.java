@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class banken {
@@ -7,7 +8,7 @@ public class banken {
     static double saldo = 0.0; 
     static String pin;
     static String username;
-    static ArrayList<String> transaktionshistorik = new ArrayList<>();
+    static List<String> transaktionshistorik = new ArrayList<>();
 
     //Metod för att visa saldot
     static void saldoKonto(Scanner scan){
@@ -187,9 +188,6 @@ public class banken {
         
 
     }
-    static void admin(){
-
-    }
     // Huvudmeny metod
     static void meny(Scanner scan){
         
@@ -202,8 +200,7 @@ public class banken {
             System.out.println("3. Ta ut pengar");
             System.out.println("4. Visa transaktionshistorik");
             System.out.println("5. Byt PIN");
-            System.out.println("6. Admin");
-            System.out.println("7. Avsluta programmet");
+            System.out.println("6. Avsluta programmet");
             int choice = scan.nextInt();
 
             // Välj alternativ, baserat på användarens inmatning
@@ -224,9 +221,6 @@ public class banken {
                     pin(scan);
                     break;
                 case 6:
-                    admin();
-                    break;
-                case 7:
                 // Case för att avsluta programmet
                     System.out.println("Tack för att du avände banken");
                     scan.close();
@@ -246,14 +240,16 @@ public class banken {
         // Fråga för att skapa username och pin
         System.out.println("Välkomna, gärna ange ditt username ");
         username = scan.next();
-        System.out.println("Skapa eget pin code (4 syfror style)");
-        pin = scan.next(); 
-        boolean pinValid = true;
-
-        // Kontrollera att pin är exakt 4 siffror
+        
+        while (true){
+            System.out.println("Skapa eget pin code (4 syfror style)");
+            pin = scan.next(); 
+            boolean pinValid = true;
+            // Kontrollera att pin är exakt 4 siffror
         if (pin.length() != 4) {
             pinValid = false;
             System.out.println("PIN måste vara 4 siffor");
+            continue;
         }
         // Kontrollera att pin bara innehåller siffror
         for (int i = 0; i < pin.length(); i++) {
@@ -269,8 +265,6 @@ public class banken {
             meny(scan); // huvudmeny
         }
         scan.close();
+            }
         }
-        
-        
     }
-
