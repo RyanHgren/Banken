@@ -1,11 +1,13 @@
 import java.util.Scanner;
+import java.util.ArrayList
 
 public class banken {
 
-    //Global vairabler för saldo, pin och username
+    //Global vairabler för saldo, pin, transaktionshistorik och username
     static double saldo = 0.0; 
     static String pin;
     static String username;
+    static List<String> transaktionshistorik = new Arraylist();
 
     //Metod för att visa saldot
     static void saldoKonto(Scanner scan){
@@ -73,6 +75,7 @@ public class banken {
             if (validChoice) {
                 saldo += result;
                 System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
+                transaktionshistorik.add("Insättning " + result); // Lägg till transaktion till en lista för att kalla den senare
                 return; // Återgå till menyn
             }
             
@@ -122,6 +125,7 @@ public class banken {
                 if (saldo >= result){
                     saldo -= result;
                     System.out.println("Du har tagit ut: " + result + "Nu har du: " + saldo + " på ditt konto");
+                    transaktionshistorik.add("Uttag " + result); // Lägg till transaktion till en lista för att kalla den senare
 
                 } else {
                     // Om inte tillräckligt med pengar
@@ -133,8 +137,24 @@ public class banken {
         }
     }
     // PLatsholder metoder som kanske implementeras senare
-    static void transaktion(){
+    static void transaktion(Scanner scan){
+        // Metod för att visa transaktionshistorik
+        System.out.println("Transaktionshistorik:");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (cPin.equals(pin)) {
+            for (String printTransaktion: transaktionshistorik) { // enhanced for loop för att gå igenom listan
+                System.out.println(printTransaktion);
+            } else {
+                if (transaktionshistorik.isEmpty()) {
+                    System.out.println ("Du har inga transaktioner än");
+                } else {
+                    System.out.println("fel pin");
+                    return;
+                }
+                }
+            }
 
+            }
     }
     static void pin(Scanner scan){
         // Metod för att byta pin
