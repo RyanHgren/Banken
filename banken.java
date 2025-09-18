@@ -8,9 +8,9 @@ public class banken {
     static String username;
 
     //Metod för att visa saldot
-    static void saldoKonto(){
+    static void saldoKonto(Scanner scan){
         System.out.println("Tryck 1 för att se saldo/ Tryck 2 för att gå tillbaka");
-        Scanner scan = new Scanner(System.in);
+        
         int choice = scan.nextInt();
         if ( choice == 1){
             // Visa saldo
@@ -31,8 +31,8 @@ public class banken {
     }
 
     // Metod för att sätta in pengar
-    static void deposit(){
-        Scanner scan = new Scanner(System.in);
+    static void deposit(Scanner scan){
+        
         while (true) {
             // Meny för insättning
             System.out.println("Välj hur mycket du vill sätta in (1-4) / 0 exit");
@@ -75,12 +75,12 @@ public class banken {
                 System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
                 return; // Återgå till menyn
             }
-            scan.close();
+            
         }
     }
     // Metod för att ta ut pengar, liknande som deposit
-    static void withdraw(){
-        Scanner scan = new Scanner(System.in);
+    static void withdraw(Scanner scan){
+        
         while (true) {
             // Meny för uttag
             System.out.println("Välj hur mycket du vill ta ut (1-4) / 0 exit");
@@ -129,22 +129,51 @@ public class banken {
                 }
                 return;
             }
-            scan.close();
+            
         }
     }
     // PLatsholder metoder som kanske implementeras senare
     static void transaktion(){
 
     }
-    static void pin(){
+    static void pin(Scanner scan){
+        // Metod för att byta pin
+    
+        System.out.println("Ange ditt pin");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (cPin.equals(pin)) { // Kontrollera om inmatat pin är korrekt genom (equals)
+            System.out.println("Ange nytt pin");
+            String newPin = scan.next();
+            boolean newPinValid = true;
+
+        // Kontrollera att pin är exakt 4 siffror
+        if (newPin.length() != 4) {
+            newPinValid = false;
+            System.out.println("PIN måste vara 4 siffor");
+        }
+        // Kontrollera att pin bara innehåller siffror
+        for (int i = 0; i < newPin.length(); i++) {
+            if (!Character.isDigit(newPin.charAt(i))) {
+                newPinValid = false;
+                System.out.println("PIN måste inneholla siffor");
+                break;
+            }
+        }
+        // OM pin är godkänt så gå till menyn
+        if (newPinValid) {
+            pin = newPin; // Uppdatera pin, har använt samma kod som i main fast ändrat variabel namn
+            System.out.println("Ditt pin har blivit ändrat");
+        }
+        }
+        
 
     }
     static void admin(){
 
     }
     // Huvudmeny metod
-    static void meny(){
-        Scanner scan = new Scanner(System.in);
+    static void meny(Scanner scan){
+        
 
         while (true) {
             // Meny
@@ -161,24 +190,25 @@ public class banken {
             // Välj alternativ, baserat på användarens inmatning
             switch (choice) {
                 case 1:
-                    saldoKonto();
+                    saldoKonto(scan);
                     break;
                 case 2:
-                    deposit();
+                    deposit(scan);
                     break;
                 case 3:
-                    withdraw();
+                    withdraw(scan);
                     break;
                 case 4:
                     transaktion();
                     break;
                 case 5:
-                    pin();
+                    pin(scan);
                     break;
                 case 6:
                     admin();
                     break;
                 case 7:
+                // Case för att avsluta programmet
                     System.out.println("Tack för att du avände banken");
                     scan.close();
                     return;
@@ -198,7 +228,7 @@ public class banken {
         System.out.println("Välkomna, gärna ange ditt username ");
         username = scan.next();
         System.out.println("Skapa eget pin code (4 syfror style)");
-        String pin = scan.next();
+        pin = scan.next(); 
         boolean pinValid = true;
 
         // Kontrollera att pin är exakt 4 siffror
@@ -214,10 +244,10 @@ public class banken {
                 break;
             }
         }
-        // OM pin är correct så gå till menyn
+        // OM pin är godkänt så gå till menyn
         if (pinValid) {
-            System.out.println("Username : " + username + " PIN " + pin);
-            meny(); // huvudmeny
+            System.out.println("Username : " + username + " PIN: " + pin);
+            meny(scan); // huvudmeny
         }
         scan.close();
         }
