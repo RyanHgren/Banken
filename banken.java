@@ -1,6 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class banken {
 
@@ -8,7 +7,7 @@ public class banken {
     static double saldo = 0.0; 
     static String pin;
     static String username;
-    static List<String> transaktionshistorik = new Arraylist();
+    static ArrayList<String> transaktionshistorik = new ArrayList<>();
 
     //Metod för att visa saldot
     static void saldoKonto(Scanner scan){
@@ -27,7 +26,6 @@ public class banken {
          else {
             // Ogiltigt val hantering
             System.out.println("Ogiltigt val, ange nummer mellan (1-2");
-            scan.close();
             return;
 
         }
@@ -67,6 +65,7 @@ public class banken {
                     System.out.println("Skriv in antal");
                     double antal = scan.nextDouble();
                     result = antal;
+                    break;
                 default:
                     validChoice = false;
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
@@ -116,6 +115,7 @@ public class banken {
                     System.out.println("Skriv in antal");
                     double antal = scan.nextDouble();
                     result = antal;
+                    break;
                 default:
                     validChoice = false;
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
@@ -137,26 +137,10 @@ public class banken {
             
         }
     }
-    /*static void transaktion(Scanner scan){
-        // Metod för att visa transaktionshistorik
-        System.out.println("Transaktionshistorik:");
-        String cPin = scan.next(); //cPin = nuvarande pin
-        if (cPin.equals(pin)) {
-            for (String printTransaktion: transaktionshistorik) { // enhanced for loop för att gå igenom listan
-                System.out.println(printTransaktion);
-            } else {
-                if (transaktionshistorik.isEmpty()) {
-                    System.out.println ("Du har inga transaktioner än");
-                } else {
-                    System.out.println("fel pin");
-                    return;
-                }
-                }
-            }
-            }*/
          static void transaktion(Scanner scan){
         // Metod för att visa transaktionshistorik
         System.out.println("Transaktionshistorik:");
+        System.out.println("Gärna ange ditt pin för att kunna fortsätta");
         String cPin = scan.next(); //cPin = nuvarande pin
         if (cPin.equals(pin)) {
             if (transaktionshistorik.isEmpty()){
@@ -171,7 +155,6 @@ public class banken {
             return;
             }
         }
-    }
     static void pin(Scanner scan){
         // Metod för att byta pin
     
