@@ -85,6 +85,12 @@ public class banken {
     // Metod för att ta ut pengar, liknande som deposit
     static void withdraw(Scanner scan){
         
+        System.out.println("Gärna ange ditt pin för att kunna fortsätta");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (!cPin.equals(pin)) {
+            System.out.println("Fel pin");
+            return;
+        }
         while (true) {
             // Meny för uttag
             System.out.println("Välj hur mycket du vill ta ut (1-4) / 0 exit");
@@ -135,9 +141,9 @@ public class banken {
                 }
                 return;
             }
-            
         }
-    }
+        }
+    
          static void transaktion(Scanner scan){
         // Metod för att visa transaktionshistorik
         System.out.println("Transaktionshistorik:");
