@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,6 +11,8 @@ public class banken {
     static String pin;
     static String username;
     static List<String> transaktionshistorik = new ArrayList<>();
+    // Variabel Datum och tid, of pattern yyyy,MM,dd HH:mm
+    static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy,MM,dd HH:mm");
 
     //Metod för att visa saldot
     static void saldoKonto(Scanner scan){
@@ -76,7 +80,8 @@ public class banken {
             if (validChoice) {
                 saldo += result;
                 System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
-                transaktionshistorik.add("Insättning " + result); // Lägg till transaktion till en lista för att kalla den senare
+                String tid = LocalDateTime.now().format(dateTime); // Skapade string som med nuvarande datum och tid
+                transaktionshistorik.add(tid + " Insättning " + result); // Lägg till transaktion till en lista för att kalla belopp och tid senare
                 return; // Återgå till menyn
             }
             
@@ -133,7 +138,8 @@ public class banken {
                 if (saldo >= result){
                     saldo -= result;
                     System.out.println("Du har tagit ut: " + result + "Nu har du: " + saldo + " på ditt konto");
-                    transaktionshistorik.add("Uttag " + result); // Lägg till transaktion till en lista för att kalla den senare
+                    String tid = LocalDateTime.now().format(dateTime); // Skapade string som med nuvarande datum och tid
+                    transaktionshistorik.add(tid + " Uttag " + result); // Lägg till transaktion till en lista för att kalla belopp och tid senare
 
                 } else {
                     // Om inte tillräckligt med pengar
