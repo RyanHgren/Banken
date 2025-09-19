@@ -39,6 +39,12 @@ public class banken {
     // Metod för att sätta in pengar
     static void deposit(Scanner scan){
         
+        System.out.println("Gärna ange ditt pin för att kunna fortsätta");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (!cPin.equals(pin)) {
+            System.out.println("Fel pin");
+            return;
+        }
         while (true) {
             // Meny för insättning
             System.out.println("Välj hur mycket du vill sätta in (1-4) / 0 exit");
