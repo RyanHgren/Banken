@@ -16,6 +16,12 @@ public class banken {
 
     //Metod för att visa saldot
     static void saldoKonto(Scanner scan){
+        System.out.println("Gärna ange ditt pin för att kunna fortsätta");
+        String cPin = scan.next(); //cPin = nuvarande pin
+        if (!cPin.equals(pin)) {
+            System.out.println("Fel pin");
+            return;
+        }
         System.out.println("Tryck 1 för att se saldo/ Tryck 2 för att gå tillbaka");
         
         int choice = scan.nextInt();
