@@ -232,7 +232,15 @@ public class banken {
             System.out.println("4. Visa transaktionshistorik");
             System.out.println("5. Byt PIN");
             System.out.println("6. Avsluta programmet");
-            int choice = scan.nextInt();
+            int choice;
+            // Kontrollera att inmatningen är ett heltal
+            if(scan.hasNextInt()){
+                choice = scan.nextInt();
+            } else {
+                System.out.println("Ogiltigt val, ange ett nummer");
+                scan.next();
+                continue;
+            }
 
             // Välj alternativ, baserat på användarens inmatning
             switch (choice) {
