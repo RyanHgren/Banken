@@ -218,7 +218,7 @@ public class banken {
 
         while (true) {
             // Meny
-            System.out.println("Välkomna till Banken, välj ett alternative (1-7)");
+            System.out.println("Välkomna till Banken, välj ett alternative (1-6)");
             System.out.println("1. Se saldo");
             System.out.println("2. Sätt in pengar");
             System.out.println("3. Ta ut pengar");
@@ -247,7 +247,6 @@ public class banken {
                 case 6:
                 // Case för att avsluta programmet
                     System.out.println("Tack för att du avände banken");
-                    scan.close();
                     return;
                 default:
                     System.out.println("Ogiltigt val, ange nummer mellan (1-7)");
@@ -267,28 +266,32 @@ public class banken {
         
         while (true){
             System.out.println("Skapa eget pin code (4 syfror style)");
-            pin = scan.next(); 
-            boolean pinValid = true;
+            String aPin = scan.next(); 
+            
             // Kontrollera att pin är exakt 4 siffror
-        if (pin.length() != 4) {
-            pinValid = false;
+        if (aPin.length() != 4) {
             System.out.println("PIN måste vara 4 siffor");
             continue;
         }
         // Kontrollera att pin bara innehåller siffror
-        for (int i = 0; i < pin.length(); i++) {
-            if (!Character.isDigit(pin.charAt(i))) {
+        boolean pinValid = true;
+        for (int i = 0; i < aPin.length(); i++) {
+            if (!Character.isDigit(aPin.charAt(i))) {
                 pinValid = false;
-                System.out.println("PIN måste inneholla siffor");
                 break;
             }
         }
+        if (!pinValid) {
+            System.out.println("PIN måste innehålla siffror");
+            continue;
+        }
         // OM pin är godkänt så gå till menyn
-        if (pinValid) {
-            System.out.println("Username : " + username + " PIN: " + pin);
-            meny(scan); // huvudmeny
+        pin = aPin;
+        System.out.println("Username : " + username + " PIN: " + pin);
+        meny(scan); // huvudmeny
+        break;
         }
-        scan.close();
-            }
-        }
+            scan.close();
+    }
+        
     }
