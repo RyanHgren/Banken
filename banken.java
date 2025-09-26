@@ -80,18 +80,21 @@ public class banken {
                     break;
                 case 4:
                     System.out.println("Skriv in antal");
-                    double antal = scan.nextDouble();
-                    result = antal;
+                    if (!scan.hasNextDouble()) {
+                        System.out.println("Ogiltigt belopp, ange ett tal");
+                        scan.next();
+                        continue;
+                    }
+                    result = scan.nextDouble();
                     break;
                 default:
                     validChoice = false;
                     System.out.println("Ogiltigt val, ange nummer mellan (1-4) eller 0 för att avsluta");
-                    break;
             }
             // Om valet är giltigt så uppdateras saldot
             if (validChoice) {
                 saldo += result;
-                System.out.println("Du har satt in: " + result + "Nu har du: " + saldo + " på ditt konto");
+                System.out.println("Du har satt in: " + result + " Nu har du: " + saldo + " på ditt konto");
                 String tid = LocalDateTime.now().format(dateTime); // Skapade string som med nuvarande datum och tid
                 transaktionshistorik.add(tid + " Insättning " + result); // Lägg till transaktion till en lista för att kalla belopp och tid senare
                 return; // Återgå till menyn
@@ -137,8 +140,12 @@ public class banken {
                     break;
                 case 4:
                     System.out.println("Skriv in antal");
-                    double antal = scan.nextDouble();
-                    result = antal;
+                    if (!scan.hasNextDouble()) {
+                        System.out.println("Ogiltigt belopp, ange ett tal");
+                        scan.next();
+                        continue;
+                    }
+                    result = scan.nextDouble();
                     break;
                 default:
                     validChoice = false;
